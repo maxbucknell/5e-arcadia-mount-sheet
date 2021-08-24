@@ -4,7 +4,7 @@ export class ActorSheet5eArcadiaMount extends NPCSheet5e {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ['dnd5e', 'sheet', 'actor', 'npc', 'mount'],
-            width: 720,
+            width: 600,
             height: 680
         })
     }
@@ -47,6 +47,18 @@ Hooks.once('init', function () {
             formula: "@attributes.ac.flat + @attributes.prof"
         }
     })
+
+    const original = window.CONFIG.Actor.documentClass.prototype._prepareNPCData
+
+    window.CONFIG.Actor.documentClass.prototype._prepareNPCData = function mountSheetWrapper (actorData) {
+        original.call(this, actorData)
+
+        const sheetClass = this._getSheetClass()
+
+        if (sheetClass && sheetClass.name === 'ActorSheet5eArcadiaMount') {
+            actorData.data.attributes.prof = Math.floor((Math.max(1, actorData.data.attributes.hp.riderlevel) + 7) / 4)
+        }
+    }
 })
 
 Actors.registerSheet("dnd5e", ActorSheet5eArcadiaMount, {
