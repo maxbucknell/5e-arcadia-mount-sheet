@@ -2,7 +2,7 @@
     "name": "arcadia-mount-sheet-5e",
     "title": "Arcadia Mount Sheet",
     "description": "This module adds options to support mounts as seen in ARCADIA",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "author": "maxbucknell",
     "systems": ["dnd5e"],
     "esmodules": ["/arcadia-mount-sheet.js"],
