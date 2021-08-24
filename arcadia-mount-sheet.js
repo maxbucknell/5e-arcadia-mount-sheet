@@ -16,7 +16,38 @@ export class ActorSheet5eArcadiaMount extends NPCSheet5e {
 
         return 'modules/arcadia-mount-sheet-5e/template/arcadia-mount-sheet.html'
     }
+
+    async _updateObject(event, formData) {
+        // Set Max Temp HP
+        const multiplierKey = 'data.attributes.hp.tempmultiplier'
+        const multiplier = parseFloat(formData[multiplierKey])
+
+        const riderLevelKey = 'data.attributes.hp.riderlevel'
+        const riderLevel = parseFloat(formData[riderLevelKey])
+
+        const profKey = 'data.attributes.prof'
+        formData[profKey] = Math.floor((riderLevel + 7) / 4)
+
+        const maxTempHPKey = 'data.attributes.hp.tempmax'
+        const newMaxTempHP = riderLevel * multiplier
+
+        if (newMaxTempHP) {
+            formData[maxTempHPKey] = newMaxTempHP
+        }
+
+        // Parent ActorSheet update steps
+        return super._updateObject(event, formData)
+    }
 }
+
+Hooks.once('init', function () {
+    window.CONFIG.DND5E.armorClasses = mergeObject(window.CONFIG.DND5E.armorClasses, {
+        mount: {
+            label: "MPWB5E.ArmorClassMount",
+            formula: "@attributes.ac.flat + @attributes.prof"
+        }
+    })
+})
 
 Actors.registerSheet("dnd5e", ActorSheet5eArcadiaMount, {
     types: ['npc'],

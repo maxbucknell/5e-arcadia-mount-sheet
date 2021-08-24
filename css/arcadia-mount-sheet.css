@@ -1,0 +1,7 @@
+.dnd5e.sheet.actor .sheet-header .attributes input.temphpmultiplier {
+    width: 23%;
+}
+
+.dnd5e.sheet.actor .sheet-header .attributes span.temphpmultipliersuffix {
+    width: 72%;
+}

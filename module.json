@@ -1,8 +1,8 @@
 {
-    "name": "arcadia-module-sheet-5e",
-    "title": "NPC Sheet for Mounts as seen in ARCADIA",
-    "description": "This module adds mount options as per the mounted combat rules in ARCADIA",
-    "version": "0.0.2",
+    "name": "arcadia-mount-sheet-5e",
+    "title": "Arcadia Mount Sheet",
+    "description": "This module adds options to support mounts as seen in ARCADIA",
+    "version": "0.1.0",
     "author": "maxbucknell",
     "systems": ["dnd5e"],
     "esmodules": ["/arcadia-mount-sheet.js"],
